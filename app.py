@@ -10,8 +10,8 @@ import random
 from gradio_client import Client, file
 
 def generate_caption_instructblip(image_path, question):
-    client = Client("hysts/image-captioning-with-blip")
-    return client.predict(file(image_path), f"Answer this Question in detail {question}", api_name="/caption")
+    client = Client("unography/image-captioning-with-longcap")
+    return client.predict(file(image_path), api_name="/caption")
 
 def extract_text_from_webpage(html_content):
     """Extracts visible text from HTML content using BeautifulSoup."""
@@ -74,7 +74,7 @@ def respond(
             for image in message["files"]: 
                 vqa += "[CAPTION of IMAGE]  "
                 gr.Info("Analyzing image")
-                vqa += generate_caption_instructblip(image, message["text"])
+                vqa += generate_caption_instructblip(image)
                 print(vqa)
         except:
             vqa = ""
@@ -201,6 +201,18 @@ def respond(
             image = f"![](https://image.pollinations.ai/prompt/{query}?{seed})"
             yield image
             gr.Info("We are going to Update Our Image Generation Engine to more powerful ones in Next Update. ThankYou")
+        elif json_data["name"] == "image_qna":
+            messages = f"<|start_header_id|>system\nYou are OpenGPT 4o mini a helpful assistant made by KingNish. You are provide with both images and captions and Your task is to answer of user with help of caption provided. Answer in human style and show emotions.<|end_header_id|>"
+            for msg in history:
+                messages += f"\n<|start_header_id|>user\n{str(msg[0])}<|end_header_id|>"
+                messages += f"\n<|start_header_id|>assistant\n{str(msg[1])}<|end_header_id|>"
+            messages+=f"\n<|start_header_id|>user\n{message_text} {vqa}<|end_header_id|>\n<|start_header_id|>assistant\n"
+            stream = client_llama.text_generation(messages, **generate_kwargs)
+            output = ""
+            for response in stream:
+                if not response.token.text == "<|eot_id|>":
+                    output += response.token.text
+                    yield output
         else:
             messages = f"<|start_header_id|>system\nYou are OpenGPT 4o mini a helpful assistant made by KingNish. You answers users query like human friend. You are also Expert in every field and also learn and try to answer from contexts related to previous question. Try your best to give best response possible to user. You also try to show emotions using Emojis and reply like human, use short forms, friendly tone and emotions.<|end_header_id|>"
             for msg in history:
