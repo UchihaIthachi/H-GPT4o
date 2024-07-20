@@ -1,12 +1,13 @@
 ---
 title: OpenGPT 4o Mini
-emoji: 📚
-colorFrom: yellow
-colorTo: red
+emoji: ⚡
+colorFrom: purple
+colorTo: indigo
 sdk: gradio
-sdk_version: 4.38.1
+sdk_version: 4.33.0
 app_file: app.py
-pinned: false
+pinned: true
+short_description: Chatbot with Unlimited Vision,Image generation and WebSearch
 ---
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
