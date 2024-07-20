@@ -71,13 +71,14 @@ def respond(
     vqa=""
     if message["files"]:
         try:
-            vqa = "[CAPTION of IMAGE]  "
-            image = message["files"][0]
-            gr.Info("Analyzing image")
-            vqa += generate_caption_instructblip(image, message["text"])
-            print(vqa)
+            for image in message["files"]: 
+                vqa += "[CAPTION of IMAGE]  "
+                gr.Info("Analyzing image")
+                vqa += generate_caption_instructblip(image, message["text"])
+                print(vqa)
         except:
             vqa = ""
+            
             
         
     functions_metadata = [
