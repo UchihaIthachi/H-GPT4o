@@ -231,6 +231,11 @@ demo = gr.ChatInterface(fn=respond,
                         title="OpenGPT 4o mini", 
                         textbox=gr.MultimodalTextbox(), 
                         multimodal=True,
-                        concurrency_limit=20)
+                        concurrency_limit=20,
+                       examples=[[{"text": "Hy, who are you?",}],
+                                  [{"text": "What's the current price of Bitcoin",}], 
+                                  [{"text": "Write me a Python function to calculate the first 10 digits of the fibonacci sequence.",}],
+                                  [{"text": "Create A Beautiful image of Effiel Tower at Night",}],
+                                  [{"text": "What's the colour of Car in given image",}]])
 
 demo.launch()
