@@ -10,7 +10,7 @@ import random
 from gradio_client import Client, file
 
 def generate_caption_instructblip(image_path):
-    client = Client("unography/image-captioning-with-longcap")
+    client = Client("hysts/image-captioning-with-blip")
     return client.predict(file(image_path), api_name="/caption")
 
 def extract_text_from_webpage(html_content):
