@@ -226,6 +226,11 @@ def respond(
                 output += response.token.text
                 yield output
 
-demo = gr.ChatInterface(fn=respond, title="OpenGPT 4o mini", textbox=gr.MultimodalTextbox(), multimodal=True)
+demo = gr.ChatInterface(fn=respond,
+                        chatbot=gr.Chatbot(show_copy_button=True, likeable=True, layout="panel"), 
+                        title="OpenGPT 4o mini", 
+                        textbox=gr.MultimodalTextbox(), 
+                        multimodal=True,
+                        concurrency_limit=20)
 
 demo.launch()
