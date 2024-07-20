@@ -9,7 +9,7 @@ import requests
 import random
 from gradio_client import Client, file
 
-def generate_caption_instructblip(image_path, question):
+def generate_caption_instructblip(image_path):
     client = Client("unography/image-captioning-with-longcap")
     return client.predict(file(image_path), api_name="/caption")
 
