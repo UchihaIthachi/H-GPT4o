@@ -233,11 +233,11 @@ demo = gr.ChatInterface(fn=respond,
                         multimodal=True,
                         concurrency_limit=20,
                         examples=[{"text": "Hy, who are you?",},
-                                {"text": "What's the current price of Bitcoin",},
-                                {"text": "Write me a Python function to calculate the first 10 digits of the fibonacci sequence.",},
-                                {"text": "Create A Beautiful image of Effiel Tower at Night",},
-                                {"text": "What's the colour of Car in given image","files": ["./car1.png", "./car2.png"]},
-                                {"text": "Read what's written on paper", "files": ["./paper_with_text.png"]}],
+                                  {"text": "What's the current price of Bitcoin",},
+                                  {"text": "Create A Beautiful image of Effiel Tower at Night",},
+                                  {"text": "Write me a Python function to calculate the first 10 digits of the fibonacci sequence.",},
+                                  {"text": "What's the colour of Car in given image","files": ["./car1.png", "./car2.png"]},
+                                  {"text": "Read what's written on paper", "files": ["./paper_with_text.png"]}],
                         cache_examples=False)
 
 demo.launch()
