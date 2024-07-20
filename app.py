@@ -226,10 +226,10 @@ def respond(
                 yield output
 
 demo = gr.ChatInterface(fn=respond, title="OpenGPT 4o mini", textbox=gr.MultimodalTextbox(), multimodal=True, 
-                        examples=[[{"Hy, who are you?"}],
-                                  [{"What's the current price of Bitcoin"}], 
-                                  [{"Write me a Python function to calculate the first 10 digits of the fibonacci sequence."}],
-                                  [{"Create A Beautiful image of Effiel Tower at Night"}],
-                                  [{"What's the colour of Car in given image"}]])
+                        examples=[[{"Hy, who are you?",}],
+                                  [{"What's the current price of Bitcoin",}], 
+                                  [{"Write me a Python function to calculate the first 10 digits of the fibonacci sequence.",}],
+                                  [{"Create A Beautiful image of Effiel Tower at Night",}],
+                                  [{"What's the colour of Car in given image",}]])
 
 demo.launch()
