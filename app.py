@@ -236,6 +236,7 @@ demo = gr.ChatInterface(fn=respond,
                                   [{"text": "What's the current price of Bitcoin",}], 
                                   [{"text": "Write me a Python function to calculate the first 10 digits of the fibonacci sequence.",}],
                                   [{"text": "Create A Beautiful image of Effiel Tower at Night",}],
-                                  [{"text": "What's the colour of Car in given image",}]])
+                                  [{"text": "What's the colour of Car in given image","files": ["./car1.png", "./car2.png"]}],
+                                  [{"text": "Read what's written on paper", "files": ["./paper_with_text.png"]}]])
 
 demo.launch()
