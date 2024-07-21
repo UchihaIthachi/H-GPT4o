@@ -1,5 +1,5 @@
 ---
-title: OpenGPT 4o Mini
+title: H-GPT4o
 emoji: ⚡
 colorFrom: purple
 colorTo: indigo
