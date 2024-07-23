@@ -175,7 +175,9 @@ def respond(message, history):
             gr.Info("Generating Image, Please wait...")
             seed = random.randint(1, 99999)
             image = image_generation_client.text_to_image(query)
-            yield image
+            image_path = f"/tmp/{uuid.uuid4()}.png"
+            image.save(image_path)
+            yield (history + [(message_text, (Image.open(image_path)))]
             gr.Info("Image generation complete.")
         elif function_name == "image_qna":
             messages = f"system\nYou are H-GPT, a helpful assistant. You are provided with both images and captions, and your task is to answer the user's questions based on the captions. Respond in a human-like style with emotions."
@@ -202,7 +204,6 @@ def respond(message, history):
                     output += response.token.text
                     yield output
     except Exception as e:
-        print(f"Error handling function call: {e}")
         messages = f"system\nYou are H-GPT, a helpful assistant. You answer users' queries like a human friend. You are an expert in many fields and strive to provide the best response possible. Show emotions using emojis and reply in a friendly tone."
         for msg in history:
             messages += f"\nuser\n{msg[0]}"
@@ -234,4 +235,3 @@ demo = gr.ChatInterface(
 )
 
 demo.launch()
-
